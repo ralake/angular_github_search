@@ -1,6 +1,7 @@
 gitHubUserSearch.controller('GitUserSearchController', function($scope, $resource) {
 
 var searchResource = $resource('https://api.github.com/search/users');
+$scope.searchHistory = []
 
   $scope.doSearch = function() {
     if($scope.searchTerm !== ""){
@@ -10,5 +11,13 @@ var searchResource = $resource('https://api.github.com/search/users');
     });
     }
   };
+
+  $scope.addSearch = function() {
+    $scope.searchHistory.push($scope.searchTerm);
+  }
+
+  $scope.displayLast = function(searchResults) {
+    return searchResults[searchResults.length - 1]
+  }
 
 });
