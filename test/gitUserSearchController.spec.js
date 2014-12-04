@@ -33,7 +33,6 @@ describe('GitUserSearchController', function() {
       expect(scope.searchResult.items).toEqual(items);
     });
   
-
   });
 
 });
