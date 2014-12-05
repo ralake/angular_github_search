@@ -1,6 +1,7 @@
 gitHubUserSearch.controller('GitUserSearchController', function($scope, $resource) {
 
 var searchResource = $resource('https://api.github.com/search/users');
+
 $scope.searchHistory = []
 
   $scope.doSearch = function() {
@@ -19,5 +20,12 @@ $scope.searchHistory = []
   $scope.displayLast = function(searchResults) {
     return searchResults[searchResults.length - 1]
   }
+
+  $scope.showUser = function(username) {
+    var userResource = $resource('https://api.github.com/users/' + username + '/repos');
+    $scope.userRepoResult = userResource.query({
+    access_token: "5d6ffa56fba974adfd2dc6b86157d542c67256c0"
+    })
+  };
 
 });

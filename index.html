@@ -14,17 +14,24 @@
   <body ng-controller="GitUserSearchController">
     <div>
       <form class="form-horizontal">
-        <input type="text" ng-model="searchTerm" ng-change="doSearch()"
-        ng-model-options="{updateOn: 'default blur', debounce: {'default': 400, 'blur': 0} }">
+        <input type="text" ng-model="searchTerm" ng-change="doSearch()" ng-model-options="{updateOn: 'default blur', debounce: {'default': 400, 'blur': 0} }">
         <button class="btn" ng-click="doSearch();addSearch();">Search</button>
         <searched>{{ displayLast(searchHistory) }}</searched>
       </form>
       <ul class="list-group" ng-repeat="user in searchResult.items">
         <li>
-          <img ng-src="{{user.avatar_url}}&s=50">
+          <img style="width:100px" ng-src="{{user.avatar_url}}">
           <a ng-href="{{user.html_url}}">{{user.login}}</a>
+          <button class="btn btn-default" ng-click="showUser(user.login);">Show Details</button>
         </li>
       </ul>
+      <repoinfo style="position:absolute; top: 40px; left: 270px">
+        User: {{ userRepoResult[0].owner.login }}
+        <p>
+        Number of Repos: {{ userRepoResult.length }} 
+        <p>
+        Most Recent Repo: {{ userRepoResult[0].name }}
+      </repoinfo>
     </div>
   </body>
 </html>
